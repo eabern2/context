@@ -14,7 +14,7 @@ jobs:
         uses: cloudbees-io/checkout@v1
 
       - name: Build petstore clinic
-        uses: docker://alpine:latest
+        uses: docker://openjdk:17
         shell: sh
         run: |
          docker build . -t jpetstore
