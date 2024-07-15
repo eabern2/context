@@ -14,10 +14,10 @@ jobs:
         uses: cloudbees-io/checkout@v1
 
       - name: Build petstore clinic
-        uses: docker://openjdk:17
+        uses: docker://maven:3.9.6-eclipse-temurin-17
         shell: sh
         run: |
-         docker build . -t jpetstore
+         pwd
 
 
 
