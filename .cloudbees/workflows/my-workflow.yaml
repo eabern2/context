@@ -15,4 +15,4 @@ jobs:
         shell: sh
         run: |
           echo "petstore clinic"
-          ./mvnw clean package
+          pwd
