@@ -18,6 +18,7 @@ jobs:
         shell: sh
         run: |
          pwd
+         ls -la
 
 
 
