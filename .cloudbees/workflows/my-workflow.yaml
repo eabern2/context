@@ -20,9 +20,6 @@ jobs:
     - name: Checkout
       uses: cloudbees-io/checkout@v1
 
-  Build:
-    needs: Checkout
-    steps:
     - name: Build petstore clinic
       uses: docker://maven:latest
       shell: sh
