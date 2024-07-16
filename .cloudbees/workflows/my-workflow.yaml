@@ -6,13 +6,15 @@ on:
     branches:
       - "**"
   workflow_dispatch:
+
 jobs:
   build:
     steps:
       - name: Checkout
         uses: cloudbees-io/checkout@v1
+
       - name: Build petstore clinic
-        uses: docker://maven:3.9.6-eclipse-temurin-17
+        uses: docker://maven:latest
         shell: sh
         run: |
           pwd
