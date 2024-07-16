@@ -10,6 +10,10 @@ on:
 jobs:
   build:
     steps:
+      - uses: docker://alpine/git:latest
+        run: |
+          git config --global -add safe.directory /cloudbees/workspace
+          
       - name: Checkout
         uses: cloudbees-io/checkout@v1
 
