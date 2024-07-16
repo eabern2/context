@@ -20,4 +20,4 @@ jobs:
           pwd
           ls -la
           echo $JAVA_HOME
-          ./mvnw clean package
+          ./mvn clean install
