@@ -8,20 +8,26 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  Setup:
     steps:
       - uses: docker://alpine/git:latest
         run: |
           git config --global --add safe.directory /cloudbees/workspace
-          
-      - name: Checkout
-        uses: cloudbees-io/checkout@v1
 
-      - name: Build petstore clinic
-        uses: docker://maven:latest
-        shell: sh
-        run: |
-          pwd
-          ls -la
-          echo $JAVA_HOME
-          ./mvnw clean install
+  Checkout: 
+    needs: Setup
+    steps:   
+    - name: Checkout
+      uses: cloudbees-io/checkout@v1
+
+  Build:
+    needs: Checkout
+    steps:
+    - name: Build petstore clinic
+      uses: docker://maven:latest
+      shell: sh
+      run: |
+        pwd
+        ls -la
+        echo $JAVA_HOME
+        whereis mvn
