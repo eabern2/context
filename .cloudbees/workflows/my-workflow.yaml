@@ -28,4 +28,5 @@ jobs:
         ls -la
         echo $JAVA_HOME
         whereis mvn
-        ./usr/bin/mvn clean install
+        cd /usr/bin
+        ./mvn clean install
