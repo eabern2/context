@@ -1,26 +1,21 @@
 apiVersion: automation.cloudbees.io/v1alpha1
 kind: workflow
 name: My workflow
-
 on:
   push:
     branches:
-      - '**'
-
+      - "**"
+  workflow_dispatch:
 jobs:
   build:
     steps:
       - name: Checkout
         uses: cloudbees-io/checkout@v1
-
       - name: Build petstore clinic
         uses: docker://maven:3.9.6-eclipse-temurin-17
         shell: sh
         run: |
-         pwd
-         ls -la
-         echo $JAVA_HOME
-         ./mvnw clean package
-
-
-
+          pwd
+          ls -la
+          echo $JAVA_HOME
+          ./mvnw clean package
