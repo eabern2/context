@@ -29,4 +29,4 @@ jobs:
         echo $JAVA_HOME
         whereis mvn
         cd /usr/bin
-        ./mvn ../../cloudbees/workspace clean install
+        ./mvn /cloudbees/workspace clean install
