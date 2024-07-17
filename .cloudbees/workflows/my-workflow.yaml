@@ -23,7 +23,7 @@ jobs:
         id: checkout
         uses: cloudbees-io/checkout@v1
         with: 
-          repsitory: ${{ github.repository }}
+          repository: ${{ github.repository }}
           path: $ {{ github.workspace }}
       - name: Set output
         id: set_output
