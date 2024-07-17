@@ -13,24 +13,22 @@ jobs:
         uses: docker://alpine/git:latest
         run: |
           git config --global --add safe.directory /cloudbees/workspace
-          
   Checkout:
     steps:
       - uses: cloudbees-io/checkout@v1
         name: Checkout
         id: checkout
         with:
-          repository: ${{ github.repository }}
-          path: $ {{ github.workspace }}
+          repository: eabern2/context
+          path: .
           provider: github
       - uses: cloudbees-io/checkout@v1
         name: Set output
         id: set_output
-        run: echo "::set_output name=workspace_dir::${{ github.workspace }}"
+        run: echo "::set_output name=workspace_dir::${{ path }}"
     needs: Setup
     outputs:
       workspace_dir: ${{ steps.checkout.outputs.workspace_dir }}
-
   Build:
     needs: Checkout
     steps:
