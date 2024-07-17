@@ -10,7 +10,8 @@ on:
 jobs:
   Setup:
     steps:
-      - uses: docker://alpine/git:latest
+      - name: Setup Git
+        uses: docker://alpine/git:latest
         run: |
           git config --global --add safe.directory /cloudbees/workspace
 
@@ -25,7 +26,7 @@ jobs:
 
     - name: set .mvn path
       uses: docker://maven:latest
-      run: echo "::add-path::$MAVEN/.mvn/wrapper"
+      run: echo "::add-path::$MAVEN_HOME/.mvn/wrapper"
 
     - name: Build with Maven
       uses: docker://maven:latest
