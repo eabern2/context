@@ -6,7 +6,6 @@ on:
     branches:
       - "**"
   workflow_dispatch:
-
 jobs:
   Setup:
     steps:
@@ -15,37 +14,38 @@ jobs:
         run: |
           git config --global --add safe.directory /cloudbees/workspace
 
-  Checkout: 
+  Checkout:
     needs: Setup
-    steps:   
-    - name: Checkout
-      uses: cloudbees-io/checkout@v1
-
-    - name: Upload workspace
-      uses: actions/upload-artifact@v2
-      with:
-        name: workspace
-        path: .
-
-  Build:
-    needs: Checkout 
+    outputs:
+      workspace_dir: ${{ steps.checkout.outputs.workspace_dir }}
     steps:
-      - name: Download workspace
-        uses: actions/download-artifact@v2
-        with:
-          name: workspace
-          
+      - name: Checkout
+        id: checkout
+        uses: cloudbees-io/checkout@v1
+        with: 
+          repsitory: ${{ github.repository }}
+          path: $ {{ github.workspace }}
+      - name: Set output
+        id: set_output
+        uses: cloudbees-io/checkout@v1
+        run: echo "::set-output name=workspace_dir::${{ github.workspace }}"
+        
+    
+  Build:
+    needs: Checkout
+    steps:
       - name: set .mvn path
         uses: docker://maven:latest
-        entrypoint: ["/bin/sh", "-c"]
-        run: echo "::add-path::$MAVEN_HOME/.mvn/wrapper"
-          pwd
-          ls -la
-
+        entrypoint:
+          - /bin/sh
+          - -c
+        run: echo "::add-path::$MAVEN_HOME/.mvn/wrapper" pwd ls -la
       - name: Build with Maven
         uses: docker://maven:latest
         shell: sh
-        entrypoint: ["/bin/sh", "-c"]
+        entrypoint:
+          - /bin/sh
+          - -c
         run: |
           pwd
           ls -la
