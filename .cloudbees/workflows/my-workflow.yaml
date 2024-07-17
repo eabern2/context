@@ -23,14 +23,18 @@ jobs:
 
     - name: Build petstore clinic
       uses: docker://maven:latest
+      entrypoint: ["/bin/sh", "-c"]
+      run: echo "Building petstore clinic"
 
     - name: set .mvn path
       uses: docker://maven:latest
+      entrypoint: ["/bin/sh", "-c"]
       run: echo "::add-path::$MAVEN_HOME/.mvn/wrapper"
 
     - name: Build with Maven
       uses: docker://maven:latest
       shell: sh
+      entrypoint: ["/bin/sh", "-c"]
       run: |
         pwd
         ls -la
