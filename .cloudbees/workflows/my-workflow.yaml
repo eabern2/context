@@ -22,11 +22,17 @@ jobs:
 
     - name: Build petstore clinic
       uses: docker://maven:latest
+
+    - name: set .mvn path
+      uses: docker://maven:latest
+      run: echo "::add-path::$MAVEN/.mvn/wrapper"
+
+    - name: Build with Maven
+      uses: docker://maven:latest
       shell: sh
       run: |
         pwd
         ls -la
         echo $JAVA_HOME
         whereis mvn
-        cd /usr/bin
-        ./mvn /cloudbees/workspace clean install
+        mvn clean package
