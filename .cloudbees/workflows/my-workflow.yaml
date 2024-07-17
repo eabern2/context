@@ -20,7 +20,7 @@ jobs:
         name: Checkout
         id: checkout
         with:
-          repository: $ {{ github.repository }}
+          repository: ${{ github.repository }}
           path: $ {{ github.workspace }}
           provider: github
       - uses: cloudbees-io/checkout@v1
