@@ -28,6 +28,8 @@ jobs:
         uses: docker://maven:latest
         entrypoint: ["/bin/sh", "-c"]
         run: echo "::add-path::$MAVEN_HOME/.mvn/wrapper"
+          pwd
+          ls -la
 
       - name: Build with Maven
         uses: docker://maven:latest
