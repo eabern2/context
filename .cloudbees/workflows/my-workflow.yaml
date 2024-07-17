@@ -13,7 +13,8 @@ jobs:
         uses: docker://alpine/git:latest
         run: |
           git config --global --add safe.directory /cloudbees/workspace
-  Checkout:
+
+  Create:
     steps:
       - uses: cloudbees-io/checkout@v1
         name: Checkout
@@ -29,8 +30,9 @@ jobs:
     needs: Setup
     outputs:
       workspace_dir: ${{ steps.checkout.outputs.workspace_dir }}
+      
   Build:
-    needs: Checkout
+    needs: Create
     steps:
       - name: set .mvn path
         uses: docker://maven:latest
